@@ -40,7 +40,8 @@ export default class QseClient extends AkairoClient {
                 noPerm(msg: Discord.Message): any {
                     msg.react(config.reactions.noPerm)
                 },
-                owners: owner
+                owners: owner,
+                prefix: '!큐세 '
             })
             this.on('message', msg => dokdo.run(msg))
         })
