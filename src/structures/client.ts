@@ -1,7 +1,7 @@
 import {AkairoClient, CommandHandler, ListenerHandler} from "discord-akairo";
 import Discord, {Team, User} from "discord.js";
 // @ts-ignore
-import config from '../config.json'
+import config from '../../config.json'
 import Dokdo from "dokdo";
 import path from "path";
 
