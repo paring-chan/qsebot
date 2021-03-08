@@ -1,5 +1,6 @@
 import {Command} from "discord-akairo";
 import {Message} from "discord.js";
+import QseClient from "../../structures/client";
 
 export default class Reload extends Command {
     constructor() {
@@ -10,6 +11,11 @@ export default class Reload extends Command {
     }
 
     async exec(msg: Message) {
+        const client = this.client as QseClient
+        client.commandHandler.categories.map(r=>r.removeAll())
+        client.listenerHandler.categories.map(r=>r.removeAll())
+        client.commandHandler.loadAll()
+        client.listenerHandler.loadAll()
         await msg.react('✔')
     }
 }
