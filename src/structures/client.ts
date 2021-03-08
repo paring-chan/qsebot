@@ -7,5 +7,6 @@ export default class QseClient extends AkairoClient {
 
     constructor() {
         super()
+
     }
 }
