@@ -10,12 +10,12 @@ export default class QseClient extends AkairoClient {
 
     commandHandler = new CommandHandler(this, {
         prefix: '!큐세 ',
-        directory: path.join(__dirname, 'commands'),
+        directory: path.join(__dirname, '../commands'),
         automateCategories: true
     })
 
     listenerHandler = new ListenerHandler(this, {
-        directory: path.join(__dirname, 'listeners')
+        directory: path.join(__dirname, '../listeners')
     })
 
     constructor() {
