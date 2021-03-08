@@ -20,12 +20,13 @@ export default class QseClient extends AkairoClient {
                 owner = app.owner.members.map(r=>r.id)
             }
             this.ownerID = owner
-            new Dokdo(this, {
+            const dokdo = new Dokdo(this, {
                 noPerm(msg: Discord.Message): any {
                     msg.react(config.reactions.noPerm)
                 },
                 owners: owner
             })
+            this.on('message', msg => dokdo.run(msg))
         })
     }
 }
