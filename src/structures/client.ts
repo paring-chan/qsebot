@@ -20,6 +20,8 @@ export default class QseClient extends AkairoClient {
     constructor() {
         super()
 
+        this.listenerHandler.loadAll()
+
         this.commandHandler.loadAll()
 
         this.login(config.token).then(async () => {
