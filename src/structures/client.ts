@@ -1,4 +1,4 @@
-import {AkairoClient, CommandHandler} from "discord-akairo";
+import {AkairoClient, CommandHandler, ListenerHandler} from "discord-akairo";
 import Discord, {Team, User} from "discord.js";
 // @ts-ignore
 import config from '../config.json'
@@ -11,6 +11,10 @@ export default class QseClient extends AkairoClient {
     commandHandler = new CommandHandler(this, {
         prefix: '!큐세 ',
         directory: path.join(__dirname, 'commands')
+    })
+
+    listenerHandler = new ListenerHandler(this, {
+        directory: path.join(__dirname, 'listeners')
     })
 
     constructor() {
