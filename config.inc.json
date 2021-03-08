@@ -1,3 +1,6 @@
 {
-  "token": ""
+  "token": "",
+  "reactions": {
+    "noPerm": ""
+  }
 }

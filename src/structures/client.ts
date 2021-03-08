@@ -1,7 +1,8 @@
 import { AkairoClient } from "discord-akairo";
-import {Team, User} from "discord.js";
+import Discord, {Team, User} from "discord.js";
 // @ts-ignore
 import config from '../config.json'
+import Dokdo from "dokdo";
 
 export default class QseClient extends AkairoClient {
     config = config
@@ -19,6 +20,11 @@ export default class QseClient extends AkairoClient {
                 owner = app.owner.members.map(r=>r.id)
             }
             this.ownerID = owner
+            new Dokdo(this, {
+                noPerm(msg: Discord.Message): any {
+                    msg.react(config.reactions.noPerm)
+                }
+            })
         })
     }
 }
