@@ -23,7 +23,8 @@ export default class QseClient extends AkairoClient {
             new Dokdo(this, {
                 noPerm(msg: Discord.Message): any {
                     msg.react(config.reactions.noPerm)
-                }
+                },
+                owners: owner
             })
         })
     }
