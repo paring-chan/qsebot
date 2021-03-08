@@ -4,7 +4,8 @@ import {Message} from "discord.js";
 export default class Reload extends Command {
     constructor() {
         super('owner__reload', {
-            ownerOnly: true
+            ownerOnly: true,
+            aliases: ['리로드']
         })
     }
 
