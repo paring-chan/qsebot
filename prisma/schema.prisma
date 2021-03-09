@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "sqlite3"
+  provider = "sqlite"
   url      = "file:data.db"
 }
 
@@ -11,7 +11,7 @@ generator client {
 }
 
 model Problem {
-    id String @id @default(autoincrement())
+    id Int @id @default(autoincrement())
     yesEmoji String
     noEmoji String
     question String
