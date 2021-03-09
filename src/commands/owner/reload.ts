@@ -13,6 +13,7 @@ export default class Reload extends Command {
     async exec(msg: Message) {
         const client = this.client as QseClient
         delete require.cache[require.resolve('../../../config.json')]
+        delete require.cache[require.resolve('../../../quiz.json')]
         client.config = require('../../../config.json')
         client.commandHandler.categories.map(r=>r.removeAll())
         client.listenerHandler.categories.map(r=>r.removeAll())
