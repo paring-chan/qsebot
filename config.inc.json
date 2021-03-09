@@ -10,9 +10,15 @@
   "quiz": [
     {
       "answer": true,
-      "question": "큐세는 여자다"
+      "question": "큐세는 여자다",
+      "correct": "<:ahqse:802119754181378058> 맞앗서요 히히",
+      "incorrect": "<:maedo:818442385717329970>"
+    },
+    {
+      "answer": true,
+      "question": "큐세의 나이는 20살이다",
+      "correct": "잘햇서<:ahqse:802119754181378058>",
+      "incorrect": "<:h_:818442664214659112>"
     }
-  ],
-  "quizCorrect": "<:ahqse:802119754181378058> 맞앗서요 히히",
-  "quizIncorrect": "<:maedo:818442385717329970>"
+  ]
 }

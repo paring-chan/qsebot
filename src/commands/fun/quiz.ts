@@ -26,9 +26,9 @@ export default class Quiz extends Command {
         if (!res.size) return msg.channel.send('시간초과')
         const reaction = res.first()!
         if (reaction.emoji.id === client.config.reactions.yes && quiz.answer) {
-            return msg.channel.send(client.config.quizCorrect)
+            return msg.channel.send(quiz.correct)
         } else {
-            return msg.channel.send(client.config.quizIncorrect)
+            return msg.channel.send(quiz.incorrect)
         }
     }
 }
