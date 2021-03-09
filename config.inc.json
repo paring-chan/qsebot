@@ -6,5 +6,13 @@
     "no": ""
   },
   "joinRole": "",
-  "guild": ""
+  "guild": "",
+  "quiz": [
+    {
+      "answer": true,
+      "question": "큐세는 여자다"
+    }
+  ],
+  "quizCorrect": "<:ahqse:802119754181378058> 맞앗서요 히히",
+  "quizIncorrect": "<:maedo:818442385717329970>"
 }
