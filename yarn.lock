@@ -16,6 +16,18 @@
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
+"@prisma/cli@^2.18.0":
+  version "2.18.0"
+  resolved "https://registry.yarnpkg.com/@prisma/cli/-/cli-2.18.0.tgz#33ba55977a198b7cdc2b1e11bd58e3280fd3c707"
+  integrity sha512-40524ZtDEivaHG4GcCXM8QOZSUg+wTj7tGe0HziXiejgFytY2vJVkEbaCKSY8fIxXso+nPKKKZYT5IJ3fSuXjg==
+  dependencies:
+    "@prisma/engines" "2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1"
+
+"@prisma/engines@2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1":
+  version "2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-2.18.0-34.da6fafb57b24e0b61ca20960c64e2d41f9e8cff1.tgz#647a7e2735b08fe28425be135120bb54ea408256"
+  integrity sha512-Q5q5mQePRFSSGbd/14Ogq1RNkebbbwskiTbWsvrSq14t9Us0rC9Xsecd4mr4rEAy8Yd6sXEJW4czZ/88DGzz2w==
+
 "@types/node@^14.14.32":
   version "14.14.32"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.32.tgz#90c5c4a8d72bbbfe53033f122341343249183448"
