@@ -20,7 +20,8 @@ export default class QseClient extends AkairoClient {
 
     constructor() {
         super({
-            restTimeOffset: 0
+            restTimeOffset: 0,
+            intents: Discord.Intents.ALL
         })
 
         this.listenerHandler.loadAll()
