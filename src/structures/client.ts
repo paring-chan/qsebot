@@ -19,7 +19,9 @@ export default class QseClient extends AkairoClient {
     })
 
     constructor() {
-        super()
+        super({
+            restTimeOffset: 0
+        })
 
         this.listenerHandler.loadAll()
 
