@@ -1,7 +1,9 @@
 {
   "token": "",
   "reactions": {
-    "noPerm": ""
+    "noPerm": "",
+    "yes": "",
+    "no": ""
   },
   "joinRole": ""
 }
