@@ -9,3 +9,13 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Problem {
+    id String @id @default(autoincrement())
+    yesEmoji String
+    noEmoji String
+    question String
+    answer Boolean
+    correct String
+    incorrect String
+}
