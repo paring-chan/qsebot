@@ -122,3 +122,4 @@ dist
 config.json
 
 prisma/data.db
+prisma/data.db-journal
