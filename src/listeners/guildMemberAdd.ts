@@ -12,6 +12,7 @@ export default class GuildMemberAdd extends Listener {
 
     async exec(member: GuildMember) {
         const client = this.client as QseClient
+        if (client.config.guild !== member.guild.id) return
         await member.roles.add(client.config.joinRole)
     }
 }
