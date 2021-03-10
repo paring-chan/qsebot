@@ -32,7 +32,6 @@ export default class ManageQuiz extends Command {
         if (op === '추가') {
             console.log('add')
             const items = yaml.parseAllDocuments(content).map(r=>r.toJSON())
-            console.log(items)
         }
     }
 }
