@@ -2,6 +2,7 @@ import {Command} from "discord-akairo";
 import {Message} from "discord.js";
 import QseClient from "../../structures/client";
 // import yargsParser from "yargs-parser";
+import yaml from 'yaml'
 
 export default class ManageQuiz extends Command {
     constructor() {
@@ -25,9 +26,13 @@ export default class ManageQuiz extends Command {
         const split = op.split(' ')
         op = split.shift()!
         if (!op) return
-        const content = split.join(' ')
+        let content = split.join(' ')
+        if (content.startsWith('```yml')) content = content.slice('```yml'.length)
+        if (content.endsWith('```')) content = content.slice(0, content.length - '```'.length)
         if (op === '추가') {
             console.log('add')
+            const items = yaml.parseAllDocuments(content)
+            console.log(items[0].toJSON())
         }
     }
 }
