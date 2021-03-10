@@ -31,8 +31,8 @@ export default class ManageQuiz extends Command {
         if (content.endsWith('```')) content = content.slice(0, content.length - '```'.length)
         if (op === '추가') {
             console.log('add')
-            const items = yaml.parseAllDocuments(content)
-            console.log(items[0].toJSON())
+            const items = yaml.parseAllDocuments(content).map(r=>r.toJSON())
+            console.log(items)
         }
     }
 }
