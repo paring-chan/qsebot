@@ -1,5 +1,5 @@
 import {Command} from "discord-akairo";
-import {Message, MessageEmbed} from "discord.js";
+import {Message, MessageEmbed, MessageReaction, User} from "discord.js";
 import QseClient from "../../structures/client";
 // import yargsParser from "yargs-parser";
 import yaml from 'yaml'
@@ -59,7 +59,38 @@ export default class ManageQuiz extends Command {
             if (!toAdd.length) return msg.reply('모든 퀴즈 데이터 검증에 실패했습니다.')
             let embed = new MessageEmbed().setColor('GREEN').setTitle('퀴즈를 추가할까요? 이미 존재하는 질문이라면 덮어씌워집니다.').setDescription(`추가될 퀴즈 목록\n${toAdd.map(r => `- ${r.question} - ${r.answer ? 'O' : 'X'}`).join('\n')}`)
             const m = await msg.reply(embed)
-            await Promise.all(['⭕', '❌'].map(r=>m.react(r)))
+            const emojis = ['⭕', '❌']
+            await Promise.all(emojis.map(r=>m.react(r)))
+            const reactions = await m.awaitReactions((reaction: MessageReaction, user: User) => emojis.includes(reaction.emoji.name) && user.id === msg.author.id, {
+                max: 1,
+                time: 30000
+            })
+            const r = reactions.first()
+            if (!r || r.emoji.name === '❌') return msg.reply('취소되었어요!')
+            for (const i of toAdd) {
+                const item = await prisma.problem.findFirst({
+                    where: {
+                        question: i.question
+                    }
+                })
+                await prisma.problem.upsert({
+                    create: {
+                        answer: i.answer,
+                        correct: i.correct,
+                        incorrect: i.incorrect,
+                        question: i.question,
+                    },
+                    where: {
+                        id: item?.id || -1
+                    },
+                    update: {
+                        answer: i.answer,
+                        correct: i.correct,
+                        incorrect: i.incorrect
+                    }
+                })
+            }
+            await msg.reply(`문제 ${toAdd.length}개가 추가되었어요!`)
         }
     }
 }
