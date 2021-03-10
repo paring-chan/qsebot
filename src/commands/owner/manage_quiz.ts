@@ -57,7 +57,7 @@ export default class ManageQuiz extends Command {
                 }
             }
             if (!toAdd.length) return msg.reply('모든 퀴즈 데이터 검증에 실패했습니다.')
-            let embed = new MessageEmbed().setColor('GREEN').setTitle('퀴즈를 추가할까요?').setDescription(`추가될 퀴즈 목록\n${toAdd.map(r => `- ${r.question} - ${r.answer ? 'O' : 'X'}`).join('\n')}`)
+            let embed = new MessageEmbed().setColor('GREEN').setTitle('퀴즈를 추가할까요? 이미 존재하는 질문이라면 덮어씌워집니다.').setDescription(`추가될 퀴즈 목록\n${toAdd.map(r => `- ${r.question} - ${r.answer ? 'O' : 'X'}`).join('\n')}`)
             const m = await msg.reply(embed)
             await Promise.all(['⭕', '❌'].map(r=>m.react(r)))
         }
