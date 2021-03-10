@@ -1,7 +1,7 @@
 import {Command} from "discord-akairo";
 import {Message} from "discord.js";
 import QseClient from "../../structures/client";
-import yargsParser from "yargs-parser";
+// import yargsParser from "yargs-parser";
 
 export default class ManageQuiz extends Command {
     constructor() {
@@ -22,7 +22,7 @@ export default class ManageQuiz extends Command {
     async exec(msg: Message, {op}: any) {
         const client = this.client as QseClient
         const {prisma} = client
-        const opts = yargsParser(op)
-        console.log(opts)
+        // const opts = yargsParser(op)
+        // console.log(opts)
     }
 }
