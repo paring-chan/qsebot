@@ -12,5 +12,6 @@ export default class ManageQuiz extends Command {
 
     async exec(msg: Message) {
         const client = this.client as QseClient
+        const {prisma} = client
     }
 }
