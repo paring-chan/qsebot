@@ -1,8 +1,16 @@
 import {Command} from "discord-akairo";
-import {Message} from "discord.js";
+import {Message, MessageEmbed} from "discord.js";
 import QseClient from "../../structures/client";
 // import yargsParser from "yargs-parser";
 import yaml from 'yaml'
+import * as yup from 'yup'
+
+type Quiz = {
+    question: string,
+    answer: boolean,
+    correct: string,
+    incorrect: string
+}
 
 export default class ManageQuiz extends Command {
     constructor() {
@@ -32,6 +40,25 @@ export default class ManageQuiz extends Command {
         if (op === '추가') {
             console.log('add')
             const items = yaml.parseAllDocuments(content).map(r=>r.toJSON())
+            const error: any[] = []
+            const toAdd: Quiz[] = []
+            const schema = yup.object().shape({
+                question: yup.string().required(),
+                answer: yup.bool().required(),
+                correct: yup.string().required(),
+                incorrect: yup.string().required()
+            })
+            for (const i of items) {
+                try {
+                    const res = await schema.validate(i)
+                    toAdd.push(res)
+                } catch {
+                    error.push(i)
+                }
+            }
+            if (!toAdd.length) return msg.reply('모든 퀴즈 데이터 검증에 실패했습니다.')
+            let embed = new MessageEmbed().setColor('GREEN').setTitle('퀴즈를 추가할까요?').setDescription(`추가될 퀴즈 목록\n${toAdd.map(r => `- ${r.question}`).join('\n')}`)
+            const m = await msg.reply(embed)
         }
     }
 }
