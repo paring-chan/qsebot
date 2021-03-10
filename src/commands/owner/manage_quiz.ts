@@ -19,10 +19,15 @@ export default class ManageQuiz extends Command {
         })
     }
 
-    async exec(msg: Message, {op}: any) {
+    async exec(msg: Message, {op}: {op: string}) {
         const client = this.client as QseClient
         const {prisma} = client
-        // const opts = yargsParser(op)
-        // console.log(opts)
+        const split = op.split(' ')
+        op = split.shift()!
+        if (!op) return
+        const content = split.join(' ')
+        if (op === '추가') {
+            console.log('add')
+        }
     }
 }
