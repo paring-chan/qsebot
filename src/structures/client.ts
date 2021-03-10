@@ -4,6 +4,7 @@ import Discord, {Team, User} from "discord.js";
 import config from '../../config.json'
 import Dokdo from "dokdo";
 import path from "path";
+import { PrismaClient } from "@prisma/client";
 
 export default class QseClient extends AkairoClient {
     config = config
@@ -17,6 +18,8 @@ export default class QseClient extends AkairoClient {
     listenerHandler = new ListenerHandler(this, {
         directory: path.join(__dirname, '../listeners')
     })
+
+    prisma = new PrismaClient()
 
     constructor() {
         super({
