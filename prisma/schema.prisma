@@ -12,8 +12,6 @@ generator client {
 
 model Problem {
     id Int @id @default(autoincrement())
-    yesEmoji String
-    noEmoji String
     question String
     answer Boolean
     correct String
