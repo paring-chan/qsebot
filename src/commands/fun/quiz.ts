@@ -11,7 +11,7 @@ export default class Quiz extends Command {
 
     async exec(msg: Message) {
         const client = this.client as QseClient
-        const quizList = []
+        const quizList: any[] = []
         const quiz = quizList[Math.floor(Math.random() * quizList.length)]
         const embed = new MessageEmbed()
         embed.setTitle('퀴즈')
