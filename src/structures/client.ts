@@ -4,6 +4,7 @@ import Discord, {Team, User} from "discord.js";
 import config from '../../config.json'
 import Dokdo from "dokdo";
 import path from "path";
+import * as mongoose from "mongoose";
 
 export default class QseClient extends AkairoClient {
     config = config
@@ -28,7 +29,7 @@ export default class QseClient extends AkairoClient {
 
         this.commandHandler.loadAll()
 
-        this.login(config.token).then(async () => {
+        mongoose.connect(config.db).then(() => this.login(config.token)).then(async () => {
             const app = await this.fetchApplication()
 
             let owner: string[] = []
