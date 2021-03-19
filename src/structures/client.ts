@@ -9,7 +9,7 @@ export default class QseClient extends AkairoClient {
     config = config
 
     commandHandler = new CommandHandler(this, {
-        prefix: '!큐세 ',
+        prefix: config.prefix,
         directory: path.join(__dirname, '../commands'),
         automateCategories: true
     })
@@ -44,7 +44,7 @@ export default class QseClient extends AkairoClient {
                     msg.react(config.reactions.noPerm)
                 },
                 owners: owner,
-                prefix: '!큐세 '
+                prefix: config.prefix
             })
             this.on('message', msg => dokdo.run(msg))
         })
