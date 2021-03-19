@@ -1,6 +1,7 @@
 import {Command} from "discord-akairo";
 import {Message, MessageEmbed} from "discord.js";
 import QseClient from "../../structures/client";
+import Problem from "../../models/Problem";
 
 export default class Quiz extends Command {
     constructor() {
@@ -11,7 +12,7 @@ export default class Quiz extends Command {
 
     async exec(msg: Message) {
         const client = this.client as QseClient
-        const quizList: any[] = []
+        const quizList: any[] = await Problem.find()
         if (!quizList.length) {
             return msg.reply('퀴즈가 업서요')
         }

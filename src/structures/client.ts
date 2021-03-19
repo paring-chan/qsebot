@@ -4,7 +4,7 @@ import Discord, {Team, User} from "discord.js";
 import config from '../../config.json'
 import Dokdo from "dokdo";
 import path from "path";
-import * as mongoose from "mongoose";
+import mongoose from "mongoose";
 
 export default class QseClient extends AkairoClient {
     config = config
