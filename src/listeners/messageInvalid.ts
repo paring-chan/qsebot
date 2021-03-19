@@ -12,10 +12,6 @@ export default class Ready extends Listener {
     }
 
     async exec(msg: Message) {
-        const counter = await Counter.findOne({
-            message: msg.content
-        })
-        if (!counter) return
         await Counter.updateOne({
             message: msg.content
         }, {
@@ -23,6 +19,10 @@ export default class Ready extends Listener {
                 count: 1
             }
         })
+        const counter = await Counter.findOne({
+            message: msg.content
+        })
+        if (!counter) return
         counter.count++
         const vm = new VM({
             sandbox: {
