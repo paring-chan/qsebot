@@ -17,6 +17,7 @@
     "discord.js": "discordjs/discord.js",
     "dokdo": "wonderlandpark/dokdo",
     "mongoose": "^5.12.1",
+    "vm2": "^3.9.2",
     "yaml": "^1.10.0",
     "yup": "^0.32.9"
   }

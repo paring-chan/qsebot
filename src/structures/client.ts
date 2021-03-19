@@ -25,6 +25,12 @@ export default class QseClient extends AkairoClient {
             intents: Discord.Intents.ALL
         })
 
+        this.listenerHandler.setEmitters({
+            client: this,
+            commandHandler: this.commandHandler,
+            listenerHandler: this.listenerHandler
+        })
+
         this.listenerHandler.loadAll()
 
         this.commandHandler.loadAll()
