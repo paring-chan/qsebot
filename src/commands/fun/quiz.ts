@@ -12,6 +12,9 @@ export default class Quiz extends Command {
     async exec(msg: Message) {
         const client = this.client as QseClient
         const quizList: any[] = []
+        if (!quizList.length) {
+            return msg.reply('퀴즈가 업서요')
+        }
         const quiz = quizList[Math.floor(Math.random() * quizList.length)]
         const embed = new MessageEmbed()
         embed.setTitle('퀴즈')
