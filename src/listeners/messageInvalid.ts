@@ -23,7 +23,6 @@ export default class Ready extends Listener {
             message: msg.content
         })
         if (!counter) return
-        counter.count++
         const vm = new VM({
             sandbox: {
                 msg,
