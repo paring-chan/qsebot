@@ -16,6 +16,13 @@ export default class Ready extends Listener {
             message: msg.content
         })
         if (!counter) return
+        await Counter.updateOne({
+            message: msg.content
+        }, {
+            $inc: {
+                count: 1
+            }
+        })
         counter.count++
         const vm = new VM({
             sandbox: {
@@ -24,6 +31,5 @@ export default class Ready extends Listener {
             }
         })
         await msg.channel.send(vm.run('`' + counter.response + '`'))
-        await counter.save()
     }
 }
