@@ -20,6 +20,8 @@ export default class Quiz extends Command {
         const embed = new MessageEmbed()
         embed.setTitle('퀴즈')
         embed.setDescription(quiz.question)
+        embed.setColor(0xff6ee7)
+        embed.setFooter(msg.author.tag, msg.author.displayAvatarURL())
         const m = await msg.reply(embed)
         await m.react(client.config.reactions.yes)
         await m.react(client.config.reactions.no)
@@ -31,14 +33,18 @@ export default class Quiz extends Command {
         const reaction = res.first()!
         if (reaction.emoji.id === client.config.reactions.yes) {
             if (quiz.answer) {
+                await msg.react('✅')
                 return msg.reply(quiz.correct)
             } else {
+                await msg.react('❌')
                 return msg.reply(quiz.incorrect)
             }
         } else {
             if (!quiz.answer) {
+                await msg.react('✅')
                 return msg.reply(quiz.correct)
             } else {
+                await msg.react('❌')
                 return msg.reply(quiz.incorrect)
             }
         }
