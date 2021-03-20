@@ -31,6 +31,7 @@ export default class Quiz extends Command {
         })
         if (!res.size) return msg.reply('시간초과')
         const reaction = res.first()!
+        quiz.incorrect = '큐세에 대해 좀 더 공부해오도록 하세요~\n' + quiz.incorrect
         if (reaction.emoji.id === client.config.reactions.yes) {
             if (quiz.answer) {
                 await msg.react('✅')
@@ -41,10 +42,8 @@ export default class Quiz extends Command {
             }
         } else {
             if (!quiz.answer) {
-                await msg.react('✅')
                 return msg.reply(quiz.correct)
             } else {
-                await msg.react('❌')
                 return msg.reply(quiz.incorrect)
             }
         }
