@@ -4,6 +4,8 @@ import config from '../../config.json'
 import Dokdo from 'dokdo'
 import mongoose from 'mongoose'
 import { CommandClient } from '@pikostudio/command.ts'
+import * as fs from 'fs'
+import path from 'path'
 
 export default class QseClient extends CommandClient {
   config = config
@@ -18,6 +20,10 @@ export default class QseClient extends CommandClient {
         prefix: config.prefix,
         owners: 'auto',
       },
+    )
+
+    fs.readdirSync(path.join(__dirname, 'modules')).forEach((x) =>
+      this.registry.loadModule(path.join(__dirname, 'modules/' + x)),
     )
 
     mongoose
