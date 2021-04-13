@@ -22,8 +22,8 @@ export default class QseClient extends CommandClient {
       },
     )
 
-    fs.readdirSync(path.join(__dirname, 'modules')).forEach((x) =>
-      this.registry.loadModule(path.join(__dirname, 'modules/' + x)),
+    fs.readdirSync(path.join(__dirname, '../modules')).forEach((x) =>
+      this.registry.loadModule(path.join(__dirname, '../modules/' + x)),
     )
 
     mongoose
