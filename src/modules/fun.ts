@@ -3,6 +3,19 @@ import QseClient from '../structures/client'
 import { command } from '@pikostudio/command.ts'
 import { Message, MessageEmbed } from 'discord.js'
 import Problem from '../models/Problem'
+import _ from 'lodash'
+
+enum RCPType {
+  ROCK,
+  SCISSORS,
+  PAPER,
+}
+
+enum RCPWin {
+  WIN = '이김',
+  LOSE = '짐',
+  DRAW = '비김',
+}
 
 class Fun extends PatchedModule {
   constructor(private client: QseClient) {
@@ -46,6 +59,63 @@ class Fun extends PatchedModule {
       if (!quiz.answer) return msg.reply(quiz.correct)
       else return msg.reply(quiz.incorrect)
     }
+  }
+
+  @command({ name: '가위바위보' })
+  async rsp(msg: Message) {
+    const emojis = ['✌️', '✊', '🖐️']
+    const m = await msg.reply(
+      new MessageEmbed()
+        .setTitle('가위바위보')
+        .setColor(0xff6ee7)
+        .setDescription('반응 아무거나(?) 눌러주세요!'),
+    )
+    const typeArr = Object.values(RCPType)
+    const rand = Math.floor(_.random(true) * (typeArr.length - 1))
+    await Promise.all(emojis.map((x) => m.react(x)))
+    const res = await m.awaitReactions(
+      (reaction, user) =>
+        emojis.includes(reaction.emoji.name) && user.id === msg.author.id,
+      {
+        time: 30000,
+        max: 1,
+      },
+    )
+    if (!res.size) return msg.reply('시간초과')
+    const reaction = res.first()!
+    let type: RCPType
+    switch (reaction.emoji.name) {
+      case emojis[0]:
+        type = RCPType.SCISSORS
+        break
+      case emojis[1]:
+        type = RCPType.ROCK
+        break
+      case emojis[2]:
+        type = RCPType.PAPER
+        break
+      default:
+        return
+    }
+    let win: RCPWin = RCPWin.DRAW
+    if (rand !== type) {
+      switch (rand) {
+        case RCPType.PAPER:
+          if (type === RCPType.SCISSORS) win = RCPWin.WIN
+          else win = RCPWin.LOSE
+          break
+        case RCPType.ROCK:
+          if (type === RCPType.PAPER) win = RCPWin.WIN
+          else win = RCPWin.LOSE
+          break
+        case RCPType.SCISSORS:
+          if (type === RCPType.ROCK) win = RCPWin.WIN
+          else win = RCPWin.LOSE
+          break
+      }
+    }
+    if (!win) return
+    await msg.reply(win)
   }
 }
 
