@@ -15,6 +15,7 @@ export default class QseClient extends CommandClient {
       {
         restTimeOffset: 0,
         intents: Discord.Intents.ALL,
+        partials: ['CHANNEL', 'GUILD_MEMBER', 'MESSAGE', 'USER', 'REACTION'],
       },
       {
         prefix: config.prefix,
