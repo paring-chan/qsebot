@@ -17,10 +17,11 @@ class Fun extends PatchedModule {
     }
     const quiz = quizList[Math.floor(Math.random() * quizList.length)]
     const embed = new MessageEmbed()
-    embed.setTitle('퀴즈')
-    embed.setDescription(quiz.question)
-    embed.setColor(0xff6ee7)
-    embed.setFooter(msg.author.tag, msg.author.displayAvatarURL())
+    embed
+      .setTitle('퀴즈')
+      .setDescription(quiz.question)
+      .setColor(0xff6ee7)
+      .setFooter(msg.author.tag, msg.author.displayAvatarURL())
     const m = await msg.reply(embed)
     await m.react(client.config.reactions.yes)
     await m.react(client.config.reactions.no)
