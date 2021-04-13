@@ -23,6 +23,15 @@
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
+"@pikostudio/command.ts@^2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@pikostudio/command.ts/-/command.ts-2.0.6.tgz#4332aa5d72328040a23af77c2bc79ba240bc6e01"
+  integrity sha512-IACCdwefOu+yNJts+kl92e532WkKqGTCL/hXyN6EbTgacLSgKcD+fSS1fa7iRy7u0nr+1zbtmRNan6FbhhaKAA==
+  dependencies:
+    "@types/node" "^14.14.37"
+    reflect-metadata "^0.1.13"
+    typescript "^4.2.3"
+
 "@types/bson@*":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@types/bson/-/bson-4.0.3.tgz#30889d2ffde6262abbe38659364c631454999fbf"
@@ -60,6 +69,11 @@
   version "14.14.32"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.32.tgz#90c5c4a8d72bbbfe53033f122341343249183448"
   integrity sha512-/Ctrftx/zp4m8JOujM5ZhwzlWLx22nbQJiVqz8/zE15gOeEW+uly3FSX4fGFpcfEvFzXcMCJwq9lGVWgyARXhg==
+
+"@types/node@^14.14.37":
+  version "14.14.37"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.37.tgz#a3dd8da4eb84a996c36e331df98d82abd76b516e"
+  integrity sha512-XYmBiy+ohOR4Lh5jE379fV2IU+6Jn4g5qASinhitfyO71b/sCo6MKsMLF5tc7Zf2CE8hViVQyYSobJNke8OvUw==
 
 "@types/yaml@^1.9.7":
   version "1.9.7"
@@ -332,6 +346,11 @@ readable-stream@^2.3.5:
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
+
+reflect-metadata@^0.1.13:
+  version "0.1.13"
+  resolved "https://registry.yarnpkg.com/reflect-metadata/-/reflect-metadata-0.1.13.tgz#67ae3ca57c972a2aa1642b10fe363fe32d49dc08"
+  integrity sha512-Ts1Y/anZELhSsjMcU605fU9RE4Oi3p5ORujwbIKXfWa+0Zxs510Qrmrce5/Jowq3cHSZSJqBjypxmHarc+vEWg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.7"
