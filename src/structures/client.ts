@@ -27,7 +27,10 @@ export default class QseClient extends CommandClient {
     )
 
     mongoose
-      .connect(config.db)
+      .connect(config.db, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      })
       .then(() => this.login(config.token))
       .then(async () => {
         const dokdo = new Dokdo(this, {
