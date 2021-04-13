@@ -33,6 +33,11 @@ class Dev extends PatchedModule {
     console.log(`=========== ${chalk.cyan('[INFO]')} RELOADED ===========`)
   }
 
+  @listener('ready')
+  ready() {
+    console.log(`Logged in as ${this.client.user!.tag}`)
+  }
+
   @listener('commandError')
   commandError(err: Error) {
     console.log(err)
