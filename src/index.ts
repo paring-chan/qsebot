@@ -1,4 +1,4 @@
-import QseClient from "./structures/client";
+import QseClient from './structures/client'
 
 new QseClient()
 

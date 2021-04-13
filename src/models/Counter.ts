@@ -1,17 +1,21 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 
-export default mongoose.model("counter", new mongoose.Schema({
+export default mongoose.model(
+  'counter',
+  new mongoose.Schema({
     message: {
-        type: "string",
-        unique: true,
-        required: true
+      type: 'string',
+      unique: true,
+      required: true,
     },
     response: {
-        type: "string",
-        required: true
+      type: 'string',
+      required: true,
     },
     count: {
-        type: "number",
-        default: 0
-    }
-}), "counter");
+      type: 'number',
+      default: 0,
+    },
+  }),
+  'counter',
+)
