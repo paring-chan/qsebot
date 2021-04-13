@@ -5,6 +5,8 @@
   "author": "파랑이 <parangee9706@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/bluebird": "^3.5.33",
+    "@types/bluebird-global": "^3.5.12",
     "@types/mongoose": "^5.10.3",
     "@types/node": "^14.14.32",
     "@types/yaml": "^1.9.7",
@@ -15,6 +17,8 @@
   },
   "dependencies": {
     "@pikostudio/command.ts": "^2.0.6",
+    "bluebird": "^3.7.2",
+    "bluebird-global": "^1.0.1",
     "chalk": "^4.1.0",
     "discord.js": "discordjs/discord.js",
     "dokdo": "wonderlandpark/dokdo",

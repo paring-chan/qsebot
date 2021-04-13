@@ -32,6 +32,18 @@
     reflect-metadata "^0.1.13"
     typescript "^4.2.3"
 
+"@types/bluebird-global@^3.5.12":
+  version "3.5.12"
+  resolved "https://registry.yarnpkg.com/@types/bluebird-global/-/bluebird-global-3.5.12.tgz#aed115214e7e17718b9854c2e8e3a6235299fdf8"
+  integrity sha512-nRtDpyG4+SZej9mTOMG9Omunbgw04nhmHzVB1qgQUwREAX2lumCmvn5EzwydUuj7b1D3nOjm6elXQyNarsBUFw==
+  dependencies:
+    "@types/bluebird" "*"
+
+"@types/bluebird@*", "@types/bluebird@^3.5.33":
+  version "3.5.33"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.33.tgz#d79c020f283bd50bd76101d7d300313c107325fc"
+  integrity sha512-ndEo1xvnYeHxm7I/5sF6tBvnsA4Tdi3zj1keRKRs12SP+2ye2A27NDJ1B6PqkfMbGAcT+mqQVqbZRIrhfOp5PQ==
+
 "@types/bson@*":
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/@types/bson/-/bson-4.0.3.tgz#30889d2ffde6262abbe38659364c631454999fbf"
@@ -119,10 +131,20 @@ bl@^2.2.1:
     readable-stream "^2.3.5"
     safe-buffer "^5.1.1"
 
+bluebird-global@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/bluebird-global/-/bluebird-global-1.0.1.tgz#147c174f4e3a19740e80d992ea70ec3dc51d0d95"
+  integrity sha512-llTREi0V3EUM150DKdMLlXN/X2QsQ/hWJDiaGnivqeDwE32I0dmivYLU9/VvhotTzvvbv7OiM6zjVXYJ2dCmKQ==
+
 bluebird@3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
   integrity sha512-MKiLiV+I1AA596t9w1sQJ8jkiSr5+ZKi0WKrYGUn6d1Fx+Ij4tIj+m2WMQSGczs5jZVxV339chE8iwk6F64wjA==
+
+bluebird@^3.7.2:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
+  integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
 bson@^1.1.4:
   version "1.1.6"

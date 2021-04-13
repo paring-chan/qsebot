@@ -1,3 +1,5 @@
+import 'bluebird-global'
+
 import QseClient from './structures/client'
 
 new QseClient()
