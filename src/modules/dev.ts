@@ -10,7 +10,7 @@ class Dev extends PatchedModule {
   }
 
   @ownerOnly
-  @command()
+  @command({ name: '리로드', aliases: ['reload'] })
   async reload(msg: Message) {
     const modules = this.client.registry.modules
       .filter((x) => x.__path.startsWith(__dirname))
