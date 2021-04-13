@@ -1,4 +1,4 @@
-import Discord, {Team, User} from "discord.js";
+import Discord from "discord.js";
 // @ts-ignore
 import config from '../../config.json'
 import Dokdo from "dokdo";
