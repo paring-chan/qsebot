@@ -1,11 +1,10 @@
 import Discord from 'discord.js'
-// @ts-ignore
-import config from '../../config.json'
 import Dokdo from 'dokdo'
 import mongoose from 'mongoose'
 import { CommandClient } from '@pikostudio/command.ts'
 import * as fs from 'fs'
 import path from 'path'
+const config = require(path.join(process.cwd(), 'config.json'))
 
 export default class QseClient extends CommandClient {
   config = config
