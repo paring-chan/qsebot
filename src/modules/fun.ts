@@ -1,9 +1,11 @@
 import PatchedModule from '../structures/PatchedModule'
 import QseClient from '../structures/client'
-import { command } from '@pikostudio/command.ts'
+import { command, listener } from '@pikostudio/command.ts'
 import { Message, MessageEmbed } from 'discord.js'
 import Problem from '../models/Problem'
 import _ from 'lodash'
+import Counter from '../models/Counter'
+import { VM } from 'vm2'
 
 enum RCPType {
   ROCK,
@@ -12,9 +14,9 @@ enum RCPType {
 }
 
 enum RCPWin {
-  WIN = '이김',
-  LOSE = '짐',
-  DRAW = '비김',
+  WIN = '이겨따!',
+  LOSE = '졌대요~메렁~',
+  DRAW = '다시해!',
 }
 
 class Fun extends PatchedModule {
@@ -68,7 +70,7 @@ class Fun extends PatchedModule {
       new MessageEmbed()
         .setTitle('가위바위보')
         .setColor(0xff6ee7)
-        .setDescription('반응 아무거나(?) 눌러주세요!'),
+        .setDescription('안내문진다 가위바위보<:qyam:822300534165864459>'),
     )
     const typeArr = Object.values(RCPType)
     const rand = Math.floor(_.random(true) * (typeArr.length - 1))
@@ -116,6 +118,31 @@ class Fun extends PatchedModule {
     }
     if (!win) return
     await msg.reply(win)
+  }
+
+  @listener('message')
+  async message(msg: Message) {
+    await Counter.updateOne(
+      {
+        message: msg.content,
+      },
+      {
+        $inc: {
+          count: 1,
+        },
+      },
+    )
+    const counter = await Counter.findOne({
+      message: msg.content,
+    })
+    if (!counter) return
+    const vm = new VM({
+      sandbox: {
+        msg,
+        count: counter.count,
+      },
+    })
+    await msg.channel.send(vm.run('`' + counter.response + '`'))
   }
 }
 
