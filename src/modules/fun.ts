@@ -1,11 +1,8 @@
 import PatchedModule from '../structures/PatchedModule'
 import QseClient from '../structures/client'
-import { command, listener } from '@pikostudio/command.ts'
+import { command } from '@pikostudio/command.ts'
 import { Message, MessageEmbed } from 'discord.js'
 import Problem from '../models/Problem'
-import _ from 'lodash'
-import Counter from '../models/Counter'
-import { VM } from 'vm2'
 
 enum RCPType {
   ROCK,
@@ -65,19 +62,34 @@ class Fun extends PatchedModule {
 
   @command({ name: '가위바위보' })
   async rsp(msg: Message) {
-    const emojis = ['✌️', '✊', '🖐️']
+    const emojis = {
+      [RCPType.ROCK]: '✊',
+      [RCPType.PAPER]: '🖐️',
+      [RCPType.SCISSORS]: '✌️',
+    }
     const m = await msg.reply(
       new MessageEmbed()
         .setTitle('가위바위보')
         .setColor(0xff6ee7)
         .setDescription('안내문진다 가위바위보<:qyam:822300534165864459>'),
     )
-    const typeArr = Object.values(RCPType)
-    const rand = Math.floor(_.random(true) * (typeArr.length - 1))
-    await Promise.all(emojis.map((x) => m.react(x)))
+    const rand = RCPType[
+      (() => {
+        const keys = Object.keys(RCPType).filter(
+          (k) => !(Math.abs(Number.parseInt(k)) + 1),
+        )
+        console.log(keys)
+        return keys[Math.floor(Math.random() * keys.length)] as
+          | 'ROCK'
+          | 'SCISSORS'
+          | 'PAPER'
+      })()
+    ] as RCPType
+    await Promise.all(Object.values(emojis).map((x) => m.react(x)))
     const res = await m.awaitReactions(
       (reaction, user) =>
-        emojis.includes(reaction.emoji.name) && user.id === msg.author.id,
+        Object.values(emojis).includes(reaction.emoji.name) &&
+        user.id === msg.author.id,
       {
         time: 30000,
         max: 1,
@@ -91,13 +103,13 @@ class Fun extends PatchedModule {
     const reaction = res.first()!
     let type: RCPType
     switch (reaction.emoji.name) {
-      case emojis[0]:
+      case emojis[RCPType.SCISSORS]:
         type = RCPType.SCISSORS
         break
-      case emojis[1]:
+      case emojis[RCPType.ROCK]:
         type = RCPType.ROCK
         break
-      case emojis[2]:
+      case emojis[RCPType.PAPER]:
         type = RCPType.PAPER
         break
       default:
@@ -124,30 +136,30 @@ class Fun extends PatchedModule {
     await msg.reply(win)
   }
 
-  @listener('message')
-  async message(msg: Message) {
-    await Counter.updateOne(
-      {
-        message: msg.content,
-      },
-      {
-        $inc: {
-          count: 1,
-        },
-      },
-    )
-    const counter = await Counter.findOne({
-      message: msg.content,
-    })
-    if (!counter) return
-    const vm = new VM({
-      sandbox: {
-        msg,
-        count: counter.count,
-      },
-    })
-    await msg.channel.send(vm.run('`' + counter.response + '`'))
-  }
+  // @listener('message')
+  // async message(msg: Message) {
+  //   await Counter.updateOne(
+  //     {
+  //       message: msg.content,
+  //     },
+  //     {
+  //       $inc: {
+  //         count: 1,
+  //       },
+  //     },
+  //   )
+  //   const counter = await Counter.findOne({
+  //     message: msg.content,
+  //   })
+  //   if (!counter) return
+  //   const vm = new VM({
+  //     sandbox: {
+  //       msg,
+  //       count: counter.count,
+  //     },
+  //   })
+  //   await msg.channel.send(vm.run('`' + counter.response + '`'))
+  // }
 }
 
 export function install(client: QseClient) {
