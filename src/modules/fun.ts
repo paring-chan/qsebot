@@ -14,7 +14,7 @@ enum RCPType {
 }
 
 enum RCPWin {
-  WIN = '이겨따!',
+  WIN = '너가 이겻서..',
   LOSE = '졌대요~메렁~',
   DRAW = '다시해!',
 }
@@ -84,6 +84,10 @@ class Fun extends PatchedModule {
       },
     )
     if (!res.size) return msg.reply('시간초과')
+    await m.edit({
+      embed: null,
+      content: emojis[rand],
+    })
     const reaction = res.first()!
     let type: RCPType
     switch (reaction.emoji.name) {
