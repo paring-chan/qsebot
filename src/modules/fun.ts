@@ -78,7 +78,6 @@ class Fun extends PatchedModule {
         const keys = Object.keys(RCPType).filter(
           (k) => !(Math.abs(Number.parseInt(k)) + 1),
         )
-        console.log(keys)
         return keys[Math.floor(Math.random() * keys.length)] as
           | 'ROCK'
           | 'SCISSORS'
