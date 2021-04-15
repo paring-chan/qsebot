@@ -1,8 +1,10 @@
 import PatchedModule from '../structures/PatchedModule'
 import QseClient from '../structures/client'
-import { command } from '@pikostudio/command.ts'
+import { command, listener } from '@pikostudio/command.ts'
 import { Message, MessageEmbed } from 'discord.js'
 import Problem from '../models/Problem'
+import Counter from '../models/Counter'
+import { VM } from 'vm2'
 
 enum RCPType {
   ROCK,
@@ -135,30 +137,30 @@ class Fun extends PatchedModule {
     await msg.reply(win)
   }
 
-  // @listener('message')
-  // async message(msg: Message) {
-  //   await Counter.updateOne(
-  //     {
-  //       message: msg.content,
-  //     },
-  //     {
-  //       $inc: {
-  //         count: 1,
-  //       },
-  //     },
-  //   )
-  //   const counter = await Counter.findOne({
-  //     message: msg.content,
-  //   })
-  //   if (!counter) return
-  //   const vm = new VM({
-  //     sandbox: {
-  //       msg,
-  //       count: counter.count,
-  //     },
-  //   })
-  //   await msg.channel.send(vm.run('`' + counter.response + '`'))
-  // }
+  @listener('message')
+  async message(msg: Message) {
+    await Counter.updateOne(
+      {
+        message: msg.content,
+      },
+      {
+        $inc: {
+          count: 1,
+        },
+      },
+    )
+    const counter = await Counter.findOne({
+      message: msg.content,
+    })
+    if (!counter) return
+    const vm = new VM({
+      sandbox: {
+        msg,
+        count: counter.count,
+      },
+    })
+    await msg.channel.send(vm.run('`' + counter.response + '`'))
+  }
 }
 
 export function install(client: QseClient) {
