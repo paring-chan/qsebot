@@ -70,7 +70,7 @@ class Fun extends PatchedModule {
             //   time: 30000,
             //   max: 1,
             // },
-        ).catch(()=>null)
+        ).catch(() => null)
         await m.edit({
             components: []
         })
@@ -94,8 +94,51 @@ class Fun extends PatchedModule {
         if (!quizList.length) {
             return msg.reply('퀴즈가 업서요')
         }
-        const quiz = quizList[Math.floor(Math.random() * quizList.length)]
-        console.log(quiz)
+
+
+        const quiz = quizList[Math.floor(Math.random() * quizList.length)] as any
+
+        if (quiz.type === 'select') {
+            let selects: { option: string, response: string }[] = []
+
+            const vm = new VM({
+                sandbox: {
+                    add: (option: string, response: string) => {
+                        selects.push({
+                            response,
+                            option
+                        })
+                    }
+                }
+            })
+
+            vm.run(quiz.script)
+
+            const m = await msg.reply({
+                content: quiz.question,
+                components:
+                    selects.map((x, i) => new MessageActionRow().addComponents(new MessageButton({
+                        style: 'PRIMARY',
+                        label: x.option,
+                        customId: i.toString(),
+                    })))
+            })
+
+            const interaction = await m.awaitMessageComponent({
+                time: 30000,
+                filter: i => i.user.id === msg.author.id,
+                componentType: 'BUTTON',
+            }).catch(()=>null)
+            if (!interaction) return msg.reply('시간초과')
+            await m.edit({
+                components: []
+            })
+            const id = Number(interaction.customId)
+            if (isNaN(id)) return
+            const select = selects[id]
+            if (!select) return
+            return interaction.reply(select.response)
+        }
     }
 
     @command({name: '가위바위보'})
@@ -158,7 +201,7 @@ class Fun extends PatchedModule {
         const res = await m.awaitMessageComponent({
             time: 30000,
             filter: args => args.user.id === msg.author.id
-        }).catch(()=>null)
+        }).catch(() => null)
         await m.edit({
             components: []
         })
@@ -203,30 +246,30 @@ class Fun extends PatchedModule {
         await button.reply(win)
     }
 
-    // @listener('message')
-    // async message(msg: Message) {
-    //     await Counter.updateOne(
-    //         {
-    //             message: msg.content,
-    //         },
-    //         {
-    //             $inc: {
-    //                 count: 1,
-    //             },
-    //         },
-    //     )
-    //     const counter = await Counter.findOne({
-    //         message: msg.content,
-    //     })
-    //     if (!counter) return
-    //     const vm = new VM({
-    //         sandbox: {
-    //             msg,
-    //             count: counter.count,
-    //         },
-    //     })
-    //     await msg.channel.send(vm.run('`' + counter.response + '`'))
-    // }
+    @listener('message')
+    async message(msg: Message) {
+        await Counter.updateOne(
+            {
+                message: msg.content,
+            },
+            {
+                $inc: {
+                    count: 1,
+                },
+            },
+        )
+        const counter = await Counter.findOne({
+            message: msg.content,
+        })
+        if (!counter) return
+        const vm = new VM({
+            sandbox: {
+                msg,
+                count: counter.count,
+            },
+        })
+        await msg.channel.send(vm.run('`' + counter.response + '`'))
+    }
 }
 
 export function install(client: QseClient) {

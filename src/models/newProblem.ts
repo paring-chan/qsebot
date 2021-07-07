@@ -1,6 +1,7 @@
+import { Schema } from 'mongoose'
 import * as mongoose from 'mongoose'
 
-const Schema = new mongoose.Schema({
+const schema = new Schema({
   question: {
     type: String,
     unique: true,
@@ -17,4 +18,5 @@ const Schema = new mongoose.Schema({
   }
 })
 
-export default mongoose.model('newProblem', Schema, 'newProblem')
+export default mongoose.model('newProblem', schema, 'newProblem')
+
