@@ -8,5 +8,6 @@
   "joinRole": "",
   "guild": "",
   "prefix": "!큐세 ",
-  "db": ""
+  "db": "",
+  "owners": []
 }
