@@ -2,8 +2,13 @@ import 'bluebird-global'
 
 import QseClient from './structures/client'
 import init from "./twitch";
+import initYoutube from "./youtube";
 
-init(new QseClient())
+const client = new QseClient()
+
+init(client)
+
+initYoutube(client)
 
 process.on('uncaughtException', console.error)
 process.on('unhandledRejection', console.error)

@@ -246,30 +246,30 @@ class Fun extends PatchedModule {
         await button.reply(win)
     }
 
-    @listener('message')
-    async message(msg: Message) {
-        await Counter.updateOne(
-            {
-                message: msg.content,
-            },
-            {
-                $inc: {
-                    count: 1,
-                },
-            },
-        )
-        const counter = await Counter.findOne({
-            message: msg.content,
-        })
-        if (!counter) return
-        const vm = new VM({
-            sandbox: {
-                msg,
-                count: counter.count,
-            },
-        })
-        await msg.channel.send(vm.run('`' + counter.response + '`'))
-    }
+    // @listener('message')
+    // async message(msg: Message) {
+    //     await Counter.updateOne(
+    //         {
+    //             message: msg.content,
+    //         },
+    //         {
+    //             $inc: {
+    //                 count: 1,
+    //             },
+    //         },
+    //     )
+    //     const counter = await Counter.findOne({
+    //         message: msg.content,
+    //     })
+    //     if (!counter) return
+    //     const vm = new VM({
+    //         sandbox: {
+    //             msg,
+    //             count: counter.count,
+    //         },
+    //     })
+    //     await msg.channel.send(vm.run('`' + counter.response + '`'))
+    // }
 }
 
 export function install(client: QseClient) {
