@@ -25,6 +25,9 @@
     "dokdo": "wonderlandpark/dokdo",
     "lodash": "^4.17.21",
     "mongoose": "^5.12.1",
+    "twitch": "^4.6.0",
+    "twitch-auth": "^4.6.0",
+    "twitch-webhooks": "^4.6.0",
     "vm2": "^3.9.2",
     "yaml": "^1.10.0",
     "yup": "^0.32.9"

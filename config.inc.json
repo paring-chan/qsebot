@@ -9,5 +9,13 @@
   "guild": "",
   "prefix": "!큐세 ",
   "db": "",
-  "owners": []
+  "owners": [],
+  "twitch": {
+    "clientID": "",
+    "clientSecret": "",
+    "user": "",
+    "host": "",
+    "port": 8080,
+    "channel": ""
+  }
 }
