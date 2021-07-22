@@ -18,7 +18,7 @@ export default async function init(client: QseClient) {
     await webhook.subscribeToStreamChanges(id, async (stream?: HelixStream) => {
         if (stream) {
             if (!prevStream) {
-                await (client.guilds.cache.get(client.config.guild)?.channels.cache.get(client.config.twitch.channel) as TextChannel|undefined)?.send('켯서요')
+                await (client.guilds.cache.get(client.config.guild)?.channels.cache.get(client.config.twitch.channel) as TextChannel|undefined)?.send('켯서요\nhttps://twitch.tv/qse__')
             }
         }
     })
