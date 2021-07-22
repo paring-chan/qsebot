@@ -1,4 +1,4 @@
-import Discord, {Team, User} from 'discord.js'
+import Discord from 'discord.js'
 import Dokdo from 'dokdo'
 import mongoose from 'mongoose'
 import {CommandClient} from '@pikostudio/command.ts'
@@ -19,7 +19,6 @@ export default class QseClient extends CommandClient {
                     'GUILDS',
                     'GUILD_MEMBERS',
                     'GUILD_BANS',
-                    'GUILD_EMOJIS',
                     'GUILD_INTEGRATIONS',
                     'GUILD_WEBHOOKS',
                     'GUILD_INVITES',
@@ -35,12 +34,13 @@ export default class QseClient extends CommandClient {
             },
             {
                 prefix: config.prefix,
-                owners: config.owners,
+                owners: 'auto',
+                rootPath: path.join(__dirname, '..')
             },
         )
 
         fs.readdirSync(path.join(__dirname, '../modules')).forEach((x) =>
-            this.registry.loadModule(path.join(__dirname, '../modules/' + x)),
+            this.registry.loadModule('modules/' + x),
         )
 
         mongoose
