@@ -16,5 +16,13 @@
     "host": "",
     "port": 8080,
     "channel": ""
+  },
+  "youtube": {
+    "id": "",
+    "url": "",
+    "port": 8081,
+    "channel": "",
+    "extraChannels": [],
+    "extraChannel": "664526611747438595"
   }
 }
